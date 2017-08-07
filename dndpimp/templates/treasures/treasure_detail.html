@@ -1,0 +1,7 @@
+{% extends 'layouts/base.html' %}
+{% block title %}{{ treasure.name }} - {{ block.super }}{% endblock %}
+{% block content %}
+	<h1>{{ treasure.name }}</h1>
+	<p>{{ treasure.description }}</p>
+	<a href="{% url 'edit_treasure' slug=treasure.slug %}">Edit me!</a>
+{% endblock %}

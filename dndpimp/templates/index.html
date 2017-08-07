@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Homepage - {{ block.super }}{% endblock %}
+{% block content %}
+	{% for treasure in treasures %}
+		<h2><a href="{% url 'treasure_detail' slug=treasure.slug %}">
+			{{ treasure.name }}
+		</a></h2>
+		<p>{{ treasure.description }}<p>
+	{% endfor %}
+{% endblock %}
