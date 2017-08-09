@@ -1,10 +1,10 @@
 {% extends 'layouts/base.html' %}
 {% block title %}Homepage - {{ block.super }}{% endblock %}
 {% block content %}
-	{% for treasure in treasures %}
-		<h2><a href="{% url 'treasure_detail' slug=treasure.slug %}">
-			{{ treasure.name }}
+	{% for item in items %}
+		<h2><a href="{% url 'item_detail' slug=item.slug %}">
+			{{ item.name }}
 		</a></h2>
-		<p>{{ treasure.description }}<p>
+		<p>{{ item.description }}<p>
 	{% endfor %}
 {% endblock %}

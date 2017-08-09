@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from dndpimp.models import Treasure
+from dndpimp.models import Item
 
-class TreasureForm(ModelForm):
+class ItemForm(ModelForm):
 	class Meta:
-		model = Treasure
+		model = Item
 		fields = ('name', 'description',)

@@ -1,9 +1,9 @@
 {% extends 'layouts/base.html' %}
 {% block title %}
-	Edit {{ treasure.name }} - {{ block.super}}
+	Edit {{ item.name }} - {{ block.super}}
 {% endblock %}
 {% block content %}
-<h1>Edit "{{ treasure.name}}"</h1>
+<h1>Edit "{{ item.name}}"</h1>
 <form role="form" action="" method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
