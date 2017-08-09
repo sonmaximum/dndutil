@@ -18,6 +18,7 @@ from django.contrib import admin
 from dndpimp import views as dndpimp_views
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
+from dndpimp.backends import MyRegistrationView
 
 urlpatterns = [
 	url(r'^$', dndpimp_views.index, name='home'),
@@ -49,6 +50,11 @@ urlpatterns = [
 		auth_views.password_reset_complete,
 		{'template_name': 'registration/password_reset_complete.html'},
 		name='password_reset_complete'),
+	url(r'^accounts/register/$', MyRegistrationView.as_view(), 
+		name='registration_register'),
+	url(r'^create_character/$', 
+		dndpimp_views.create_character,
+		name='create_character'),
 	url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', admin.site.urls),
 ]

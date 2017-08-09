@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Create Character - {{ block.super }}{% endblock %}
+{% block content %}
+<h1>Create Character</h1>
+<form role="form" action="" method="post">
+	{% csrf_token %}
+	{{ form.as_p}}
+	<input type="submit" value="Submit" />
+</form>
+{% endblock %}

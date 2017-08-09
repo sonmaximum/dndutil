@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from dndpimp.forms import ItemForm
-from dndpimp.models import Item
+from dndpimp.forms import *
+from dndpimp.models import *
+from django.template.defaultfilters import slugify
 
 # Create your views here.
 def index(request):
@@ -31,3 +32,20 @@ def edit_item(request, slug):
 		'item': item,
 		'form': form,
 	})
+
+def create_character(request):
+	form_class = CharacterForm
+	if request.method == 'POST':
+		form = form_class(request.POST)
+		if form.is_valid():
+			character = form.save(commit=False)
+			character.user = request.user
+			character.slug = slugify(character.name)
+			character.save()
+			return redirect('character_detail', slug=character.slug)
+	else:
+		form = form_class()
+
+	return render(request, 'characters/create_character.html', {
+		'form': form,
+		})

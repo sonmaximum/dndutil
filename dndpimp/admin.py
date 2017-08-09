@@ -15,6 +15,6 @@ class CharacterAdmin(admin.ModelAdmin):
 	model = Character
 	list_display = ('name', 'description', 'user')
 	prepopulated_fields = {'slug': ('name',)}
-
+	
 
 admin.site.register(Character, CharacterAdmin)
