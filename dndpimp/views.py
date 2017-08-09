@@ -17,7 +17,7 @@ def item_detail(request, slug ):
 
 def edit_item(request, slug):
 	item = Item.objects.get(slug=slug)
-	form_class = itemForm
+	form_class = ItemForm
 	if request.method == 'POST':
 		form = form_class(data=request.POST, instance=item)
 		if form.is_valid():
