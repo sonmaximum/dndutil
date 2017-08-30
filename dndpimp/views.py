@@ -95,3 +95,14 @@ def edit_character(request, slug):
 		'character': character,
 		'form': form,
 		})
+
+def browse_by_name(request, initial=None):
+	if initial:
+		items = Item.objects.filter(
+			name__istartswith=initial).order_by('name')
+	else:
+		items = Item.objects.all().order_by('name')
+	return render(request, 'search/search.html', {
+		'items': items,
+		'initial': initial,
+	})

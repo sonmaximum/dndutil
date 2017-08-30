@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from dndpimp import views as dndpimp_views
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth import views as auth_views
 from dndpimp.backends import MyRegistrationView
 
@@ -29,6 +29,7 @@ urlpatterns = [
 	url(r'contact/$',
 		TemplateView.as_view(template_name='contact.html'),
 		name='contact'),
+	#item URLS
 	url(r'^create_item/$',
 		dndpimp_views.create_item,
 		name='create_item'),
@@ -38,6 +39,28 @@ urlpatterns = [
 	url(r'^items/(?P<slug>[-\w]+)/edit/$',
 		dndpimp_views.edit_item,
 		name='edit_item'),
+	#character URLS
+	url(r'^create_character/$',
+		dndpimp_views.create_character,
+		name='create_character'),
+	url(r'^characters/(?P<slug>[-\w]+)/$',
+		dndpimp_views.character_detail,
+		name='character_detail'),
+	url(r'^characters/(?P<slug>[-\w]+)/edit/$',
+		dndpimp_views.edit_character,
+		name='edit_character'),
+	#browsing URSL
+	url(r'browse/$', RedirectView.as_view(
+		pattern_name='browse')),
+	url(r'items/$', RedirectView.as_view(
+		pattern_name='browse')),
+	url(r'^browse/name/$',
+		dndpimp_views.browse_by_name,
+		name='browse'),
+	url(r'^browse/name/(?P<initial>[-\w]+)/$',
+		dndpimp_views.browse_by_name,
+		name='browse_by_name'),
+	#password reset etc URLs
 	url(r'^accounts/password/reset/$', auth_views.password_reset,
 		{'template_name': 'registration/password_reset_form.html'},
 		name='password_reset'),
@@ -53,17 +76,9 @@ urlpatterns = [
 		auth_views.password_reset_complete,
 		{'template_name': 'registration/password_reset_complete.html'},
 		name='password_reset_complete'),
+	#registration/accounts URLS
 	url(r'^accounts/register/$', MyRegistrationView.as_view(),
 		name='registration_register'),
-	url(r'^create_character/$',
-		dndpimp_views.create_character,
-		name='create_character'),
-	url(r'^characters/(?P<slug>[-\w]+)/$',
-		dndpimp_views.character_detail,
-		name='character_detail'),
-	url(r'^characters/(?P<slug>[-\w]+)/edit/$',
-		dndpimp_views.edit_character,
-		name='edit_character'),
 	url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', admin.site.urls),
 ]
