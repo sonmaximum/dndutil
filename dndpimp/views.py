@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from dndpimp.forms import *
 from dndpimp.models import *
 from django.template.defaultfilters import slugify
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 # Create your views here.
 def index(request):
@@ -73,8 +75,12 @@ def character_detail(request, slug ):
 		'character': character
 		})
 
+@login_required
 def edit_character(request, slug):
 	character = Character.objects.get(slug=slug)
+	if character.user != request.user:
+		raise Http404
+
 	form_class = CharacterForm
 	if request.method == 'POST':
 		form = form_class(data=request.POST, instance=character)

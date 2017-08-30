@@ -1,7 +1,13 @@
 {% extends 'layouts/base.html' %}
 {% block title %}{{ character.name }} - {{ block.super }}{% endblock %}
 {% block content %}
-    <h1>{{ character.name }}</h1>
-    <p>{{ character.description }}</p>
-    <a href="{% url 'edit_character' slug=character.slug %}">Edit me!</a>
+ <h1>{{ character.name }}</h1>
+ <p>{{ character.description }}</p>
+ {% if user == character.user %}
+    <p>
+        <a href="{% url 'edit_character' slug=character.slug %}">
+            Edit me!
+        </a>
+    </p>
+{% endif %}
 {% endblock %}
