@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT dndutil.wsgi.application
+web: waitress-serve --port=$PORT dndutil.wsgi:application
