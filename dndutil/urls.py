@@ -27,7 +27,7 @@ urlpatterns = [
 		TemplateView.as_view(template_name='about.html'),
 		name='about'),
 	url(r'contact/$',
-		TemplateView.as_view(template_name='contact.html'),
+		dndpimp_views.contact,
 		name='contact'),
 	#item URLS
 	url(r'^create_item/$',
