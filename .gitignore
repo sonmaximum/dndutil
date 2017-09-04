@@ -91,4 +91,5 @@ ENV/
 .spyderproject
 
 # Rope project settings
-.ropeproject
+.ropeprojectsendgrid.env
+sendgrid.env
