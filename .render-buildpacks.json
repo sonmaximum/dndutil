@@ -1,0 +1,5 @@
+{
+  "buildpacks": [
+    "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/python.tgz"
+  ]
+}
